@@ -1,70 +1,45 @@
-# Build outputs
-/build/
-**/build/
-*.apk
-*.aab
-*.ap_
-*.dex
+# Miscellaneous
 *.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
 
-# Dart / Flutter
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-/build/
-**/local.properties
-**/GeneratedPluginRegistrant.java
-**/.cxx/
-
-# Coverage
-coverage/
-*.lcov
-
-# IDE / Editor
-.idea/
+# IntelliJ related
 *.iml
 *.ipr
 *.iws
-.vscode/
-.history/
-*.swp
-*~
-.DS_Store
-Thumbs.db
+.idea/
 
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
 
-# Logs / crash dumps
-*.log
-*.log.*
-*.pid
-*.seed
-*.pid.lock
-hs_err_pid*
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
 
-# Editor / IDE specific
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/gradle.xml
-.idea/assetWizardSettings.xml
-.idea/dictionaries
-.idea/caches/build_file_checksums.ser
-.idea/libraries
-.fleet/
-.idea/markdown-navigator/
-android/.gradle/
-android/.kotlin/
-android/captures/
-android/local.properties
-android/**/GeneratedPluginRegistrant.java
-android/.idea/
+# Symbolication related
+app.*.symbols
 
-# Generated icon / splash assets
-assets/icon/icon.png
-assets/splash/splash.png
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release

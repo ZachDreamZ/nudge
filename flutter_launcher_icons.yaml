@@ -1,8 +1,17 @@
-# Configuration file for the flutter_launcher_icons package.
+# Configuration for the flutter_launcher_icons package.
 # Run `flutter pub run flutter_launcher_icons` (or
-# `dart run flutter_launcher_icons`) to regenerate all Android density
-# buckets from `assets/icon/app_icon.png`.
+# `dart run flutter_launcher_icons`) to regenerate all Android
+# density buckets from the source assets.
+#
+# The Android 8+ adaptive icon is split into a foreground layer
+# (the white bell mark on a transparent background) and a
+# background layer (the brand-purple gradient). Devices older
+# than Android 8 fall back to `image_path`, which we keep
+# identical to the foreground so the legacy launcher shows the
+# same mark against a neutral background.
 flutter_launcher_icons:
   android: "launcher_icon"
   image_path: "assets/icon/app_icon.png"
+  adaptive_icon_background: "assets/icon/app_icon_background.png"
+  adaptive_icon_foreground: "assets/icon/app_icon_foreground.png"
   min_sdk_android: 21
