@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Channel for low battery reminders -->
+    <declare-styleable name="NotificationChannel">
+        <attr name="channelId" format="string"/>
+        <attr name="channelName" format="string"/>
+        <attr name="channelDescription" format="string"/>
+        <attr name="importance" format="integer"/>
+        <attr name="vibrationPattern" format="longArray"/>
+    </declare-styleable>
+
+    <!-- Channel for Wi-Fi change notifications -->
+    <declare-styleable name="NotificationChannelWifi">
+        <attr name="channelId" format="string"/>
+        <attr name="channelName" format="string"/>
+        <attr name="channelDescription" format="string"/>
+        <attr name="importance" format="integer"/>
+    </declare-styleable>
+
+    <!-- Channel for rule evaluation notifications -->
+    <declare-styleable name="NotificationChannelRule">
+        <attr name="channelId" format="string"/>
+        <attr name="channelName" format="string"/>
+        <attr name="channelDescription" format="string"/>
+        <attr name="importance" format="integer"/>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,70 @@
+# Build outputs
+/build/
+**/build/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Dart / Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+**/local.properties
+**/GeneratedPluginRegistrant.java
+**/.cxx/
+
+# Coverage
+coverage/
+*.lcov
+
+# IDE / Editor
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.history/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs / crash dumps
+*.log
+*.log.*
+*.pid
+*.seed
+*.pid.lock
+hs_err_pid*
+
+# Editor / IDE specific
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/caches/build_file_checksums.ser
+.idea/libraries
+.fleet/
+.idea/markdown-navigator/
+android/.gradle/
+android/.kotlin/
+android/captures/
+android/local.properties
+android/**/GeneratedPluginRegistrant.java
+android/.idea/
+
+# Generated icon / splash assets
+assets/icon/icon.png
+assets/splash/splash.png

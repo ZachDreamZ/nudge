@@ -1,0 +1,8 @@
+# Configuration file for the flutter_launcher_icons package.
+# Run `flutter pub run flutter_launcher_icons` (or
+# `dart run flutter_launcher_icons`) to regenerate all Android density
+# buckets from `assets/icon/app_icon.png`.
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/icon/app_icon.png"
+  min_sdk_android: 21

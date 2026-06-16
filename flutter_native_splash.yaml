@@ -1,0 +1,32 @@
+# flutter_native_splash configuration.
+#
+# Run with:
+#   dart run flutter_native_splash:create
+# to (re)generate the per-platform launch / splash resources from
+# `assets/icon/app_icon.png` using the colours below.
+#
+# Naming convention in this package (no `color_light` key):
+#   * `color`              = light-mode background (window colour)
+#   * `color_dark`         = dark-mode background (window colour)
+#   * `icon_background_color` / `icon_background_color_dark` = Android 12+
+#     icon centre background (the disc behind the app icon on Android 12+)
+#
+# We mirror `AppColors.background` (dark) and `AppColorsLight.background`
+# (light) from `lib/main.dart` so the splash always blends with the app
+# surface in either OS theme.
+
+flutter_native_splash:
+  # Pre-Android 12 splash (legacy drawable) — system picks light/dark.
+  color: "#F7F7FA"            # light-mode background = AppColorsLight.background
+  color_dark: "#121212"       # dark-mode background  = AppColors.background
+  image: assets/icon/app_icon.png
+
+  android_12:
+    # Window background the OS shows behind the centered icon.
+    color: "#F7F7FA"          # light
+    color_dark: "#121212"     # dark
+    # Centre disc behind the icon — same brand surface as the home cards.
+    icon_background_color: "#1E1E2C"        # = AppColors.surface
+    icon_background_color_dark: "#1E1E2C"   # brand surface reads well in both
+
+  # iOS / web are not configured — this is an Android-only project today.

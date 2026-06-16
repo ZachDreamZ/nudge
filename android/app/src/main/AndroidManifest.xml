@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permissions for background monitoring -->
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Android 13+ (API 33+) runtime notification permission -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!--
+        Required so the Settings "Battery optimization" tile can launch
+        ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS and request the user
+        to whitelist the app. Without this the OS silently no-ops the
+        request and the system status tile never flips to "Unrestricted".
+    -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!--
+        Required to read the connected Wi-Fi SSID on Android 8.0+ (API 26+).
+        Without this, WifiManager.getConnectionInfo().getSSID() returns
+        "02:00:00:00:00:00" (a fake MAC) for privacy, which the user
+        sees as "<unknown ssid>" in the notification.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--
+        Peer-to-peer rule transfer via flutter_nearby_connections.
+        Bluetooth (legacy + API 31+ split) and NEARBY_WIFI_DEVICES (API 33+)
+        are needed for Wi-Fi Direct / BLE discovery. Requested at runtime
+        via NearbyPermissionService.
+    -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+
+    <application
+        android:label="Nudge"
+        android:name="${applicationName}"
+        android:icon="@mipmap/launcher_icon"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:dataExtractionRules="@xml/data_extraction_rules">
+
+        <!-- Main Flutter Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- The BatteryReceiver and WifiChangeBroadcastReceiver are
+             registered DYNAMICALLY in MainActivity.onCreate so the
+             receiver references can be cleaned up in onDestroy. The
+             legacy static declarations were removed because they caused
+             the receivers to fire twice (once for the static and once
+             for the dynamic registration), which posted duplicate
+             notifications. WorkManager is auto-restored on boot, so
+             the static entries are not needed. -->
+
+        <!-- Boot Receiver — WorkManager auto-restores on BOOT_COMPLETED,
+             but ConstraintProxy must be declared so WorkManager can wire
+             up its internal broadcast listeners. -->
+        <receiver
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+            android:exported="false" />
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+
+</manifest>
