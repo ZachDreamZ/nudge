@@ -1,5 +1,7 @@
 # Nudge
 
+![Nudge featured image](marketing/featured.png)
+
 Context-aware reminders for Android. Set a trigger, pick an alert tone, get notified at exactly the right moment.
 
 Nudge is a privacy-respecting reminder app built on a single principle: it does exactly one thing, and it does it without sending a single byte of your data to anyone.
@@ -46,7 +48,9 @@ If you delete the app, your data is gone. If you want it gone before that, Setti
 |   |-- services/            # Permissions, backups, export history, logging
 |   `-- widgets/             # Shared widget primitives (staggered fade-in)
 |-- test/                    # Unit tests (quiet hours edge cases, alert type normalization)
-|-- assets/                   # App icon, splash
+|-- assets/                   # App icon (foreground + background layers)
+|-- marketing/               # Featured / social-card image (featured.png)
+|-- tools/                   # Renderers for the icon and the featured image
 |-- PRIVACY_POLICY.md         # Plain-language privacy policy
 |-- DATA_SAFETY.md            # Play Console Data Safety form answers
 |-- analysis_options.yaml     # Dart lints
@@ -106,7 +110,7 @@ The app declares the minimum it needs and prompts for each one at the moment it 
 |------------|----------------|-----|
 | `POST_NOTIFICATIONS` | First launch | Show reminder notifications. |
 | `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` | Creating or editing a Wi-Fi rule | Read the connected SSID on Android 8.0+. |
-| `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` | Settings → Battery optimization tile | Keep the background worker alive. |
+| `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` | Settings -> Battery optimization tile | Keep the background worker alive. |
 
 No other runtime permissions are requested.
 
@@ -117,6 +121,12 @@ No other runtime permissions are requested.
 - `Rule.isInQuietHours` edge cases: same-day window, window that crosses midnight, 1-minute degenerate window, 00:00 to 00:00 empty window, 00:00 to 23:59 maximal window.
 - `Rule.toJson` / `Rule.fromJson` round-trip preserves `quietStartMinutes`, `quietEndMinutes`, and the alert type.
 - `AlertType.normalize` accepts every whitelisted value and falls back to standard for malformed inputs.
+
+## Marketing assets
+
+`marketing/featured.png` is a 1200x630 social-card image (Open Graph / Twitter card standard) that can be used as a project banner, a GitHub repo social card, or a marketing graphic. It is generated from scratch by `tools/generate_featured_image.ps1` and re-runs in a few seconds.
+
+The launcher icon assets (foreground bell, background gradient, per-density buckets) are also generated from `tools/generate_icons.ps1` + `flutter_launcher_icons.yaml`. Both scripts are idempotent.
 
 ## Contributing
 
